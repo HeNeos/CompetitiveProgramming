@@ -1,3 +1,41 @@
+/*
+*
+*		Beautiful Matrix V2.
+*
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int vect[5];
+int x;
+int y;
+
+int absoluto(int a, int b){
+	return sqrt((a-b)*(a-b));
+}
+
+int main(){
+	for(int j=1; j<=5; j++){
+		y=j;
+		for(int i=0; i<=4; i++){
+			cin>>vect[i];
+			if(vect[i]==1){
+				x=i+1;
+				goto salir;
+			}
+		}
+	}
+salir:;
+cout<<absoluto(x,3)+absoluto(y,3);
+}
+
+
+/*
+*
+*		Beautiful Matrix V1.
+*
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 int mat[5][5];
