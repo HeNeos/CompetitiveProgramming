@@ -7,8 +7,6 @@ long long vech[2000000];
 long long vecm[2000000];
 int cont=0;
 int cont2=0;
-int j;
-int aux=1;
 int main(){
 cin>>cuad;
 	for(m=1; m*m*m<=8*cuad; m++){
