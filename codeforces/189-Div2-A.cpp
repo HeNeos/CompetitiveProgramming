@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdlib.h>
-//#include <math.h>
 #define MAX(a1,a2,a3) max(a1,max(a2,a3))
 using namespace std;
 int n,a1,a2,a3,sum[4001];
