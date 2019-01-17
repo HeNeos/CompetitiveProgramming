@@ -3,7 +3,7 @@ using namespace std;
 long long a;
 long long b;
 long long m;
-long long cont;
+long long cont=0;
 long long suma;
 int main(){
 	cin>>a>>b>>m;
