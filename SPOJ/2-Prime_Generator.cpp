@@ -22,7 +22,7 @@ void prim(long long n){
 		}
 	}
 	for(long long i=2; i<=n; i++){
-		if(primos[i]==true){
+		if(primos[i]){
 			vecprim.push_back(i);
 		}
 	}
