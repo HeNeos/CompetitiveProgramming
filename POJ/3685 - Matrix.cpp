@@ -26,7 +26,7 @@ int main() {
 		if(n > 50000) seclo = -2500000000;
 		else seclo = 1+100000+n*n-100000*n+n;
 		long long sechi = max(n*n+100000*n+1-100000+n,3*n*n);
-		while(sechi>seclo /*|| countm1 != countm2*/){
+		while(sechi>seclo){
 			countm1 = 0;
 			long long m1 = seclo + (sechi - seclo)/2;
 			for(long long j=1; j<=n; j++){
@@ -136,4 +136,3 @@ int main() {
 	}
 	return 0;
 }
-*/
