@@ -55,6 +55,24 @@ bool isPrime(ll p){
 	}
 	return flag;
 }
+vector <ll> prefhash(string p){
+	int pi=31;
+	for(int i=0; i<p.size(); i++){
+		if(i>0){
+			ll aux = pref[i-1];
+			pref.pb((aux+((p[i]-'a'+1)*fastexp(pi,i,mods))%mods)%modds);
+		}
+		else pref.pb(p[i]-'a'+1);
+	}
+	return pref;
+}
+ll hashsubs(string p, int i, int j){
+	int pi=31;
+	int sz = j-i+1;
+	ll fp = (pp[i+sz-1]-pp[i-1]+mods)%mods;
+	ll sp = invmod(fastexp(pi,i,mods),mods);
+	return (1LL*fp*sp)%mods;
+}
 
 int main(){
 	return 0;
