@@ -11,7 +11,9 @@ typedef vector<int> vi;
 typedef vector<ll> vl;
 typedef vector<pii> vii;
 typedef vector<pll> vll;
-int TestMillerRabin[9] = {2,3,5,7,11,13,17,19,23};
+
+int TestMillerRabin[12] = {2,3,5,7,11,13,17,19,23,29,31,37};
+
 ll mulmod(ll a, ll b, ll p){
 	ll x = 0, y = a%p;
 	while(b>0){
@@ -21,6 +23,7 @@ ll mulmod(ll a, ll b, ll p){
 	}
 	return x%p;
 }
+
 ll fastexp(ll x, ll y, ll p){
 	ll ans = 1;
 	while(y > 0){
@@ -30,6 +33,7 @@ ll fastexp(ll x, ll y, ll p){
 	}
 	return ans%p;
 }
+
 ll fastexpp(ll x, ll y, ll p){
 	ll ans = 1;
 	while(y > 0){
@@ -39,39 +43,36 @@ ll fastexpp(ll x, ll y, ll p){
 	}
 	return ans%p;
 }
+
 ll invmod(ll x, ll p){
 	return fastexp(x,p-2,p)%p;
 }
+
+//Change fastexpp to fastexp for small numbers :)
+bool check_composite(ll n, ll a, ll d, int s){
+	ll x = fastexpp(a,d,n);
+	if(x == 1 || x == n-1) return false;
+	for(int r=1; r<s; r++){
+		x = (1LL*x*x)%n;
+		if(x == n-1) return false;
+	}
+	return true;
+}
+
 bool isPrime(ll p){
-	bool flag = true;
 	if(p<=1) return false;
-	for(int i=0; i<9; i++){
+	int r = 0;
+	ll d = p-1;
+	while(!(d&1)){
+		d >>= 1;
+		r++;
+	}
+	for(int i=0; i<12; i++){
 		int value = TestMillerRabin[i];
-		if(value >= p) break;
-		if(fastexp(value,p,p) != value){
-			flag = false;
-			break;
-		}
+		if(p == value) return true;
+		if(check_composite(p,value,d,r)) return false;
 	}
-	return flag;
-}
-vector <ll> prefhash(string p){
-	int pi=31;
-	for(int i=0; i<p.size(); i++){
-		if(i>0){
-			ll aux = pref[i-1];
-			pref.pb((aux+((p[i]-'a'+1)*fastexp(pi,i,mods))%mods)%modds);
-		}
-		else pref.pb(p[i]-'a'+1);
-	}
-	return pref;
-}
-ll hashsubs(string p, int i, int j){
-	int pi=31;
-	int sz = j-i+1;
-	ll fp = (pp[i+sz-1]-pp[i-1]+mods)%mods;
-	ll sp = invmod(fastexp(pi,i,mods),mods);
-	return (1LL*fp*sp)%mods;
+	return true;
 }
 
 int main(){
