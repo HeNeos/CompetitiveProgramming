@@ -1,47 +1,41 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+#define mp make_pair
+#define pb push_back
+#define FIFO ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+#define MOD 1000000007
+#define mods 1000000009
+#define modhash1 1000000009
+#define modhash2 1000000007
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
 
-string ltrim(const string &);
-string rtrim(const string &);
-
-
-
-int main()
-{
-    string t_temp;
-    getline(cin, t_temp);
-
-    int t = stoi(ltrim(rtrim(t_temp)));
-
-    for (int t_itr = 0; t_itr < t; t_itr++) {
-        string n_temp;
-        getline(cin, n_temp);
-
-        long n = stol(ltrim(rtrim(n_temp)));
+#define N 85
+int main(){
+    FIFO;
+    ll fib[N];
+    fib[0] = 0;
+    fib[1] = 1;
+    for(int i=2; i<N; i++)
+        fib[i] = fib[i-1]+fib[i-2];
+    int t;
+    cin >> t;
+    while(t--){
+        ll n;
+        cin >> n;
+        ll ans = 0;
+        for(int i=2; i<N; i++){
+            if(fib[i] <= n){
+                if(fib[i]%2 == 0) ans+=fib[i];
+            }
+            else break;
+        }
+        cout << ans << '\n';
     }
-
     return 0;
-}
-
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
-
-    return s;
 }
