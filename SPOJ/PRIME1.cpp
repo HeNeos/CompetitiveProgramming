@@ -1,62 +1,42 @@
-/*
-*
-* https://www.spoj.com/problems/PRIME1/
-* PRIME1 - Prime Generator
-*
-*/
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-vector <long long> vecprim;
-void prim(long long n){
-	bool primos[n+1];
-	vecprim.clear();
-	memset(primos,true,sizeof(primos));
-	primos[0]=false;
-	primos[1]=false;
-	for(int i=2; i*i<=n; i++){
-		if(primos[i] == true){
-			for(int j=i*i; j<=n; j+=i){
-				primos[j]=false;
-			}
-		}
-	}
-	for(long long i=2; i<=n; i++){
-		if(primos[i]){
-			vecprim.push_back(i);
-		}
-	}
+#define FIFO ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+
+#define N 40000
+using ll = long long;
+
+bitset <N> primes;
+vector <int> p;
+void sieve(){
+    for(int i=2; i<N; i++){
+        if(!primes[i]){
+            p.push_back(i);
+            for(ll j=1LL*i*i; j<N; j+=i) primes[j] = 1;
+        }
+    }
 }
-void primosin(long long minim, long long maxim){
-	long long limite=floor(sqrt(maxim)) +1;
-	prim(limite);
-	bool primos[maxim-minim+2];
-	memset(primos,true,sizeof(primos));
-	for(long long i=0; i<vecprim.size(); i++){
-		int inflim=floor(minim/vecprim[i])*vecprim[i];
-		if(inflim < minim) inflim+=vecprim[i];
-		for(long long j=inflim; j<=maxim; j+=vecprim[i]) primos[j-minim]=false;
-	}
-	for(long long i=minim; i<=maxim; i++){
-		if(primos[i-minim]) cout<<i<<"\n";
-	}
+
+void solve(ll l, ll r){
+    vector <bool> isPrime(r-l+1, true);
+    for(ll i=0; i<p.size(); i++){
+        for(ll j=max(1LL*p[i]*p[i], 1LL*(l+p[i]-1)/p[i]*p[i]); j<=r; j+=p[i]){
+        	isPrime[j-l] = false;
+        }
+    }
+    if(l == 1) isPrime[0] = false;
+    for(ll i=l; i<=r; i++){
+        if(isPrime[i-l]) cout << i << '\n';
+    }
 }
-int t;
-long long n;
-long long m;
+
 int main(){
-	cin>>t;
-	for(int i=1; i<=t; i++){
-		cin>>m>>n;
-		if(n<1000000){
-			prim(n);
-			for(int i=0; i<vecprim.size(); i++){
-				if(vecprim[i]>=m) cout<<vecprim[i]<<"\n";
-			}
-		}
-		else{
-			primosin(m,n);
-		}
-		cout<<"\n";
-	}
+	FIFO;
+    sieve();
+    int t; cin >> t;
+    while(t--){
+        int n, m; cin >> n >> m;
+        solve(n, m);
+        cout << '\n';
+    }
+    return 0;
 }
