@@ -1,63 +1,65 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-#define HN 40000005
+
 #define N 100000005
-// #define MAXN 10000000000000000
-#define MAXN (4096 - 1)
+#define MAXN (10000000000000000 - 1)
 
-int hilbert[HN];
-int lpf[N];
-
+bitset <N> primes;
 void sieve(){
-    for(int i=0; i<HN; i++)
-        hilbert[i] = 4*i+1;
-    for(int i=1; i<HN; i++){
-        if(hilbert[i] >= N) break;
-        if(!lpf[hilbert[i]]){
-            lpf[hilbert[i]] = hilbert[i];
-            for(ll j=2LL*hilbert[i]; j<N; j+=hilbert[i]){
-                if(lpf[j] == 0) lpf[j] = hilbert[i];
+	for(int i=2; i<N; i++){
+		if(!primes[i]){
+			for(ll j=1LL*i*i; j<N; j+=i) primes[j] = 1;
+		}
+	}
+    primes[1] = 1;
+}
+
+int mobius[N];
+int t[N];
+int tt[N];
+void cmob(){
+	for(int i=1; i<N; i++){
+        mobius[i] = 1;
+        t[i] = 0;
+        tt[i] = 0;
+	}
+    for(int i=1; i<N; i+=2){
+        if(!primes[i]){
+            if(i%4 == 3){
+                for(ll j=i; j<N; j+=i){
+                    t[j]++;
+                    if(t[j] >= 2) mobius[j] *= -1;
+                }
+                for(ll j=1LL*i*i; j<N; j+=1LL*i*i){
+                    mobius[j] *= -1;
+                    tt[j]++;
+                    if(tt[j] >= 2) mobius[j] = 0;
+                }
+                if(1LL*i*i > N/i) continue;
+                for(ll j=1LL*i*i*i; j<N; j+=1LL*i*i*i) mobius[j] = 0;
+            }
+            else{
+                for(ll j=i; j<N; j+=i) mobius[j] *= -1;
+                for(ll j=1LL*i*i; j<N; j+=1LL*i*i) mobius[j] = 0;
             }
         }
     }
+    for(int i=1; i<N; i+=2){
+        if(t[i] > 2 && tt[i] == 0) mobius[i] *= (t[i] - 1);
+    }
 }
 
-int calc_mob(ll n){
-    int ans = 1;
-    while(n > 1){
-        ll d = lpf[n];
-        int c = 0;
-        while(n%d == 0){
-            n /= d;
-            c++;
-        }
-        if(c >= 2) return 0;
-        ans *= -1;
-    }
-    return ans;
-}
 
 int main(){
     sieve();
-    //ll ans = (MAXN+3)/4;
+    cmob();
     ll ans = 0;
-    for(int i=0; i<HN; i++){
-        ll h = 1LL*hilbert[i]*hilbert[i];
-        if(h > MAXN) break;
-        ll val = MAXN/h;
-        val = (val-1)/4 + 1;
-        // 1 ... 50
-        // 1 5 9 ... 49 -> 13
-        cout << i << " " << hilbert[i] << " " << calc_mob(hilbert[i]) << " " << val << endl;
-        ans += 1LL*calc_mob(hilbert[i])*val;
+    for(int i=1; i<=N; i+=2){
+        if(1LL*i*i > MAXN) break;
+        if(i%4 == 3 && t[i] < 2) continue;
+        ans += 1LL*mobius[i]*((MAXN/(1LL*i*i) + 3)/4);
     }
     cout << ans << '\n';
     return 0;
 }
-
-
-
-// n/h^2 -> h^2*1, h^2*2, h^2*3, ... 
-// 25 125 225 ... 925
-// 
