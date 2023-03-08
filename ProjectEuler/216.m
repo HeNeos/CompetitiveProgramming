@@ -1,0 +1,1 @@
+Count[PrimeQ[2*Range[50000000]^2 - 1], True]
