@@ -1,0 +1,1 @@
+Total@Map[Total@RealDigits[Sqrt[#], 10, 100][[1]] &, Range[2, 100]] - Total@Range[9]
