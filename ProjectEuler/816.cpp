@@ -3,6 +3,7 @@ using namespace std;
 using ll = long long;
 
 #define N 2000000
+#define TRIM 250LL*250
 #define MOD 50515093
 
 vector <pair <ll, ll> > s(N);
@@ -33,13 +34,13 @@ ll solve(vector <pair <ll, ll> > points){
     ll dl = solve(vector<pair<ll, ll> > (points.begin(), points.begin()+mid));
     ll dr = solve(vector<pair<ll, ll> > (points.begin()+mid, points.end()));
     ll d = min(dl, dr);
+    d = min(d, TRIM);
 
     vector <pair <ll, ll> > strip;
     for(int i=0; i<sz; i++){
-        if(abs(points[i].first - points[mid].first) < d)
+        if((points[i].first - points[mid].first)*(points[i].first - points[mid].first) < d)
             strip.push_back(make_pair(points[i].second, points[i].first));
     }
-    
     sort(strip.begin(), strip.end());
     for(int i=0; i<strip.size(); i++){
         for(int j=i+1; j<strip.size(); j++){
