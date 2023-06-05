@@ -3,3 +3,5 @@ codeforces/.cph
 codeforces/.catalyst
 codeforces/.temp
 .temp
+.cph
+*/.cph
