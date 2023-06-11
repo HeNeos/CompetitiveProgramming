@@ -25,7 +25,7 @@ long long query(int pos) {
 
 
 int main(){
-	FIFO;
+    FIFO;
     int m, c;
     cin >> N >> m >> c;
     BIT.resize(N+5);

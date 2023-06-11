@@ -38,25 +38,25 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-	long long a;
-	long long b;
-	cin>>a>>b;
-	int bitsa;
-	int bitsb;
-	int cont=0;
-	if(a==b){
-		cout<<0;
-		return 0;
-	}
-	bitsa=floor(log2(a))+1;
-	bitsb=floor(log2(b))+1;
-	if(bitsb>bitsa) cout<<(1LLU<<(bitsb))-1;
-	else{
-		for(int i=bitsb-1; i>=0; i--){
-			if(!((a>>i)^(b>>i))) cont++;
-			else break;
-		}
-		cout<<(1LLU<<(bitsb-cont))-1;
-	}
+    long long a;
+    long long b;
+    cin>>a>>b;
+    int bitsa;
+    int bitsb;
+    int cont=0;
+    if(a==b){
+        cout<<0;
+        return 0;
+    }
+    bitsa=floor(log2(a))+1;
+    bitsb=floor(log2(b))+1;
+    if(bitsb>bitsa) cout<<(1LLU<<(bitsb))-1;
+    else{
+        for(int i=bitsb-1; i>=0; i--){
+            if(!((a>>i)^(b>>i))) cont++;
+            else break;
+        }
+        cout<<(1LLU<<(bitsb-cont))-1;
+    }
 return 0;
 }

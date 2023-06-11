@@ -13,8 +13,8 @@ void clean(){
 void solve(vector <vector <int> > &garments, int pos, int acum){
     if(acum > m) return;
     if(pos == c){
-    	dp[acum][pos] = 1;
-    	return;
+        dp[acum][pos] = 1;
+        return;
     }
     if(dp[acum][pos] != -1) return;
     

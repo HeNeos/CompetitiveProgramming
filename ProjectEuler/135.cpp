@@ -58,7 +58,7 @@ int main() {
     sieve();
     int ans = 0;
     for(int i=2; i<1000000; i++){
-    	if(solve(i) == 10) ans++;
+        if(solve(i) == 10) ans++;
     }
     cout << ans << '\n';
     return 0;

@@ -2,14 +2,14 @@
 using namespace std;
 int prim[100];
 long long fastexp(long long a, long long b){
-	if(b==0) return 1;
-	if(b==1) return a;
-	if(b%2 == 0){
-		long long aux = fastexp(a,b/2);
-		return 1LL*aux*aux;
-	}
-	long long aux = fastexp(a,(b-1)/2);
-	return 1LL*a*aux*aux;
+    if(b==0) return 1;
+    if(b==1) return a;
+    if(b%2 == 0){
+        long long aux = fastexp(a,b/2);
+        return 1LL*aux*aux;
+    }
+    long long aux = fastexp(a,(b-1)/2);
+    return 1LL*a*aux*aux;
 }
 void lpf(){
     for(int i=0; i<100; i++) prim[i] = 0;
@@ -44,17 +44,17 @@ int main(){
       cin >> n;
       long long answ = 0;
       for(int i=1; i<=68; i++){
-		    long long aux = (long long)floor(pow(n,1.0/i));
+            long long aux = (long long)floor(pow(n,1.0/i));
         long long lo = max(aux-100,0LL);
-			  long long hi = min(aux+100,(long long) pow(10,18.0/i));
-			  while(lo < hi){
-				  long long me = lo + (hi-lo+1)/2;
-				  long long gg = fastexp(me,i);
-				  if(gg <= n) lo = me;
-				  else hi = me-1;
-			  }
-		    aux = lo;
-		    if(aux == 0) break;
+              long long hi = min(aux+100,(long long) pow(10,18.0/i));
+              while(lo < hi){
+                  long long me = lo + (hi-lo+1)/2;
+                  long long gg = fastexp(me,i);
+                  if(gg <= n) lo = me;
+                  else hi = me-1;
+              }
+            aux = lo;
+            if(aux == 0) break;
         answ = answ + (mobius[i]*(aux-1));
       }
       cout << answ << '\n';

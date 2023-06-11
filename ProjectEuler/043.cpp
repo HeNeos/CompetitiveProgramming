@@ -26,17 +26,17 @@ void solve(int pos, int suff, bitset <10> check, ll current){
         }
     }
     else{
-	    int m = (primes[pos]-(suff%primes[pos]))%primes[pos];
-	    int x = (m*inv[pos])%primes[pos];
-	    int nextValue = x;
-	    while(nextValue < 10){
-	        if(!check[nextValue]){
-	            check[nextValue] = 1;
-	            solve(pos+1, nextValue*10+suff/10, check, current + 1LL*nextValue*pot10[pos]);
-	            check[nextValue] = 0;
-	        }
-	        nextValue += primes[pos];
-	    }
+        int m = (primes[pos]-(suff%primes[pos]))%primes[pos];
+        int x = (m*inv[pos])%primes[pos];
+        int nextValue = x;
+        while(nextValue < 10){
+            if(!check[nextValue]){
+                check[nextValue] = 1;
+                solve(pos+1, nextValue*10+suff/10, check, current + 1LL*nextValue*pot10[pos]);
+                check[nextValue] = 0;
+            }
+            nextValue += primes[pos];
+        }
     }
 }
 

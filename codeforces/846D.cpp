@@ -28,7 +28,7 @@ bool test(int T){
 int main(){
     cin >> m >> n >> k >> brok;
     for(int i=1; i<=brok; i++){
-    	cin >> posx[i] >> posy[i] >> tim[i];
+        cin >> posx[i] >> posy[i] >> tim[i];
     }
     long long answ = -1;
     long long low = 0;

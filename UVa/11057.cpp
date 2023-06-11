@@ -15,13 +15,13 @@ int main(){
         while (a < b){
             if (lib[a] + lib[b] < m) a++;
             else{
-            	if (lib[a] + lib[b] == m){
-                	ba = a;
-                	bb = b;
-                	a++; b--;
-            	}
+                if (lib[a] + lib[b] == m){
+                    ba = a;
+                    bb = b;
+                    a++; b--;
+                }
             else b--;
-        	}
+            }
         }
         cout << "Peter should buy books whose prices are " << lib[ba] << " and " << lib[bb] << ".\n\n";
     }

@@ -11,16 +11,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
-	int d;
-	long long n;
-	long long k;
-	cin>>d;
-	for(int i=1; i<=d; i++){
-		cin>>n>>k;
-		long long z=n-ceil((k+1)/2);
-		long long w=floor((k-1)/2);
-		cout<<!((n-k)&((k-1)>>1))<<endl;
-	}
+    int d;
+    long long n;
+    long long k;
+    cin>>d;
+    for(int i=1; i<=d; i++){
+        cin>>n>>k;
+        long long z=n-ceil((k+1)/2);
+        long long w=floor((k-1)/2);
+        cout<<!((n-k)&((k-1)>>1))<<endl;
+    }
 }
 
 
@@ -39,22 +39,22 @@ int main(){
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-	int d;
-	long long n;
-	long long k;
-	cin>>d;
-	for(int i=1; i<=d; i++){
-		cin>>n>>k;
-		long long z=n-ceil((k+1)/2);
-		long long w=floor((k-1)/2);
-		bitset <32> bsetz(z);
-		bitset <32> bsetw(w);
-		for(int i=0; i<=31; i++){
-			if(bsetz[i]==0 && bsetw[i]==1){
-				cout<<0<<"\n";
-				break;
-			}
-		}
-		cout<<1<<"\n";
-	}
+    int d;
+    long long n;
+    long long k;
+    cin>>d;
+    for(int i=1; i<=d; i++){
+        cin>>n>>k;
+        long long z=n-ceil((k+1)/2);
+        long long w=floor((k-1)/2);
+        bitset <32> bsetz(z);
+        bitset <32> bsetw(w);
+        for(int i=0; i<=31; i++){
+            if(bsetz[i]==0 && bsetw[i]==1){
+                cout<<0<<"\n";
+                break;
+            }
+        }
+        cout<<1<<"\n";
+    }
 }

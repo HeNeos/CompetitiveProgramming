@@ -18,7 +18,7 @@ void solve(){
     int ans_1 = -1;
     int ans_2 = -1;
     int diff = INT_MAX;
-	int DIFF = -1;
+    int DIFF = -1;
     int ANS_1 = -1;
     int ANS_2 = -1;
     for(int i=0; i<=s; i++){

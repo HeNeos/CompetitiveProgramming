@@ -32,5 +32,5 @@ int main() {
         solve(ans_2, s);
         check(ans_1, ans_2);
     }
-	return 0;
+    return 0;
 }

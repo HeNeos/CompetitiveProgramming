@@ -12,7 +12,7 @@ ll solve(int n){
     for(int i=1; i<=n; i++){
         if(n - 2*i < 0) break;
         if(i == 1) ans += 3*solve(n-2*i);
-    	else ans += 2*solve(n-2*i);
+        else ans += 2*solve(n-2*i);
     }
     dp[n] = ans;
     return dp[n];

@@ -22,7 +22,7 @@ void solve(vector <int> &arr, int pos, int acum){
 int main(){
     int t; cin >> t;
     while(t--){
-    	clean();
+        clean();
         int m; cin >> m;
         vector <int> arr(m);
         int s = 0;

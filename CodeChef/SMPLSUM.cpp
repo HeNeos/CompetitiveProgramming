@@ -6,25 +6,25 @@ using ll = long long;
 #define N 10000005
 
 ll fastexp(ll x, ll y){
-	ll ans = 1;
-	while(y > 0){
-		if(y&1) ans = (ans*x);
-		y = y>>1;
-		x = (x*x);
-	}
-	return ans;
+    ll ans = 1;
+    while(y > 0){
+        if(y&1) ans = (ans*x);
+        y = y>>1;
+        x = (x*x);
+    }
+    return ans;
 }
 
 int lpf[N];
 void sieve(){
     for(int i=2; i<N; i++){
-		if(!lpf[i]){
-			lpf[i] = i;
-			for(ll j=1LL*i*i; j<N; j+=i){
-				if(lpf[j] == 0) lpf[j] = i;
-			}
-		}
-	}
+        if(!lpf[i]){
+            lpf[i] = i;
+            for(ll j=1LL*i*i; j<N; j+=i){
+                if(lpf[j] == 0) lpf[j] = i;
+            }
+        }
+    }
 }
 
 void get_prime_factorization(int n, vector <pair<int, int> > &f){

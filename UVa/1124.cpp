@@ -2,10 +2,10 @@
 using namespace std;
 
 int main(){
-	string s;
-	while(getline(cin,s)){
-		cout << s;
-		cout << "\n";
-	}
-	return 0;
+    string s;
+    while(getline(cin,s)){
+        cout << s;
+        cout << "\n";
+    }
+    return 0;
 }

@@ -38,12 +38,12 @@ int solve(int r){
             current_col[row] = past_col[row] + m[row][col];
         }
         for(int i=0; i<40; i++){
-	        current_col[0] = min(current_col[0], m[0][col] + current_col[1]);
-	        for(int row=1; row<N-1; row++){
-	            current_col[row] = min(current_col[row], m[row][col] + current_col[row-1]);
-	            current_col[row] = min(current_col[row], m[row][col] + current_col[row+1]);
-	        }
-	        current_col[N-1] = min(current_col[N-1], m[N-1][col] + current_col[N-2]);
+            current_col[0] = min(current_col[0], m[0][col] + current_col[1]);
+            for(int row=1; row<N-1; row++){
+                current_col[row] = min(current_col[row], m[row][col] + current_col[row-1]);
+                current_col[row] = min(current_col[row], m[row][col] + current_col[row+1]);
+            }
+            current_col[N-1] = min(current_col[N-1], m[N-1][col] + current_col[N-2]);
         }
         for(int row=0; row<N; row++)
             past_col[row] = current_col[row];
@@ -62,7 +62,7 @@ int main(){
     }
     int ans = INT_MAX;
     for(int i=0; i<N; i++){
-	    ans = min(ans, solve(i));
+        ans = min(ans, solve(i));
     }
     cout << ans << '\n';
     return 0;

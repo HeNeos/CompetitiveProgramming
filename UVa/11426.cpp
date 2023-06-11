@@ -7,27 +7,27 @@ vector <pair <int, int> > mb;
 
 int lpf[N];
 void sieve(){
-	for(int i=2; i<N; i++){
-		if(!lpf[i]){
-			lpf[i] = i;
-			for(long long j=1LL*i*i; j<N; j+=i){
-				if(lpf[j] == 0) lpf[j] = i;
-			}
-		}
-	}
+    for(int i=2; i<N; i++){
+        if(!lpf[i]){
+            lpf[i] = i;
+            for(long long j=1LL*i*i; j<N; j+=i){
+                if(lpf[j] == 0) lpf[j] = i;
+            }
+        }
+    }
 }
 
 int mobius[N];
 
 void cmob(){
-	mobius[1] = 1;
-	for(int i=2; i<N; i++){
-		if(lpf[i] == i) mobius[i] = -1;
-		else{
-			if(lpf[i/lpf[i]] == lpf[i]) mobius[i] = 0;
-			else mobius[i] = -1*mobius[i/lpf[i]];
-		}
-	}
+    mobius[1] = 1;
+    for(int i=2; i<N; i++){
+        if(lpf[i] == i) mobius[i] = -1;
+        else{
+            if(lpf[i/lpf[i]] == lpf[i]) mobius[i] = 0;
+            else mobius[i] = -1*mobius[i/lpf[i]];
+        }
+    }
     for(int i=1; i<N; i++){
         if(mobius[i] != 0) mb.push_back(make_pair(i, mobius[i]));
     }

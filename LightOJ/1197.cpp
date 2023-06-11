@@ -9,18 +9,18 @@ bitset <N> isPrime;
 void sieve(){
     isPrime[0] = 1;
     isPrime[1] = 1;
-	for(int i=2; i<N; i++){
-		if(!isPrime[i]){
+    for(int i=2; i<N; i++){
+        if(!isPrime[i]){
             primes.push_back(i);
-			for(ll j=1LL*i*i; j<N; j+=i) isPrime[j] = 1;
-		}
-	}
+            for(ll j=1LL*i*i; j<N; j+=i) isPrime[j] = 1;
+        }
+    }
 }
 
 int main(){
     FIFO;
     sieve();
-	int t; cin >> t;
+    int t; cin >> t;
     for(int _=1; _<=t; _++){
         ll a, b; cin >> a >> b;
         bitset <N> count;
@@ -41,5 +41,5 @@ int main(){
         }
         cout << "Case " << _ << ": " << ans << '\n'; 
     }
-	return 0;
+    return 0;
 }

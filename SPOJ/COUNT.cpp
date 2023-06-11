@@ -13,9 +13,9 @@ void fill(){
 }
 
 ll solve(ll n, ll k){
-	if(n < 0) return 0;
-	if(n == 0) return 1;
-	if(k == 0) return 0;
+    if(n < 0) return 0;
+    if(n == 0) return 1;
+    if(k == 0) return 0;
     if(dp[n][k] != -1) return dp[n][k];
     ll ans = 0;
     ans += solve(n, k-1) + solve(n-k, k);

@@ -21,10 +21,10 @@ int main(){
     memset(dp, -1, sizeof dp);
     int n;
     while(cin >> n){
-    	ll ans = solve(n, 4);
-    	if(ans == 1) cout << "There is only 1 way ";
-    	else cout << "There are " << ans << " ways ";
-    	cout << "to produce " << n << " cents change.\n";
+        ll ans = solve(n, 4);
+        if(ans == 1) cout << "There is only 1 way ";
+        else cout << "There are " << ans << " ways ";
+        cout << "to produce " << n << " cents change.\n";
     }
     return 0;
 }

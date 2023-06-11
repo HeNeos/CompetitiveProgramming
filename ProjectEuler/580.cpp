@@ -7,11 +7,11 @@ using ll = long long;
 
 bitset <N> primes;
 void sieve(){
-	for(int i=2; i<N; i++){
-		if(!primes[i]){
-			for(ll j=1LL*i*i; j<N; j+=i) primes[j] = 1;
-		}
-	}
+    for(int i=2; i<N; i++){
+        if(!primes[i]){
+            for(ll j=1LL*i*i; j<N; j+=i) primes[j] = 1;
+        }
+    }
     primes[1] = 1;
 }
 
@@ -19,11 +19,11 @@ int mobius[N];
 int t[N];
 int tt[N];
 void cmob(){
-	for(int i=1; i<N; i++){
+    for(int i=1; i<N; i++){
         mobius[i] = 1;
         t[i] = 0;
         tt[i] = 0;
-	}
+    }
     for(int i=1; i<N; i+=2){
         if(!primes[i]){
             if(i%4 == 3){

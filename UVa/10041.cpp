@@ -8,7 +8,7 @@ int parts;
 int posic[501];
 int vito;
 int absol(int x, int y){
-	return sqrt((x-y)*(x-y));
+    return sqrt((x-y)*(x-y));
 }
 int dividir(int *array, int inicio, int fin) {
     int izq;
@@ -18,7 +18,7 @@ int dividir(int *array, int inicio, int fin) {
     pivot = array[inicio];
     izq = inicio;
     der = fin;
-	while (izq < der) {
+    while (izq < der) {
         while (array[der] > pivot) {
             der--;
         }
@@ -48,17 +48,17 @@ void quicksort(int *array, int inicio, int fin)
 
 int main(){
 cin>>n;
-	for(int i=0; i<=n-1; i++){
-		cin>>parts;
-		for(int i=0; i<=parts-1; i++){
-			cin>>posic[i];
-		}
-	quicksort(posic, 0, parts - 1);
-	vito=posic[(parts-1)/2];
-		for(int i=0; i<=parts-1; i++){
-			dist=dist+absol(vito,posic[i]);
-		}
-	cout<<dist<<endl;
-	dist=0;	
-	}
+    for(int i=0; i<=n-1; i++){
+        cin>>parts;
+        for(int i=0; i<=parts-1; i++){
+            cin>>posic[i];
+        }
+    quicksort(posic, 0, parts - 1);
+    vito=posic[(parts-1)/2];
+        for(int i=0; i<=parts-1; i++){
+            dist=dist+absol(vito,posic[i]);
+        }
+    cout<<dist<<endl;
+    dist=0;    
+    }
 }

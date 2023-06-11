@@ -8,9 +8,9 @@ void rader(Complex *y, int len) {
         if(i < j) swap(y[i], y[j]);
         int k = len / 2;
         while(j >= k){
-			j -= k; 
-			k /= 2;
-		}
+            j -= k; 
+            k /= 2;
+        }
         if(j < k) j += k;
     }
 }

@@ -16,9 +16,9 @@ int main(){
         while(abc<5*100000 && !sqr(abc*abc+a[i+1])) abc++;
         a[i]=abc*abc-k;
         if(a[i]>1*10000000000000 || abc==5*100000){
-			  cout<<"No";
-			  return 0;
-			  }
+              cout<<"No";
+              return 0;
+              }
         k=k+a[i]+a[i+1];
     }
     cout<<"Yes\n";

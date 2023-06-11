@@ -48,8 +48,8 @@ int main(){
     while(cin >> H >> n){
         if(H == 0 and n == 0) break;
         if(H == n){
-        	cout << "0 1\n";
-        	continue;
+            cout << "0 1\n";
+            continue;
         }
         ll N, k;
         solve(H, n, N, k);

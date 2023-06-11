@@ -20,7 +20,7 @@ void solve(ll l, ll r){
     vector <bool> isPrime(r-l+1, true);
     for(ll i=0; i<p.size(); i++){
         for(ll j=max(1LL*p[i]*p[i], 1LL*(l+p[i]-1)/p[i]*p[i]); j<=r; j+=p[i]){
-        	isPrime[j-l] = false;
+            isPrime[j-l] = false;
         }
     }
     if(l == 1) isPrime[0] = false;
@@ -30,7 +30,7 @@ void solve(ll l, ll r){
 }
 
 int main(){
-	FIFO;
+    FIFO;
     sieve();
     int t; cin >> t;
     while(t--){

@@ -23,18 +23,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-	int n;
-	int m;
-	int s;
-	int contf;
-	int contc;
-	cin>>n>>m>>s;
-	int k;
-	int p;
-	k=(n-1)/s;
-	p=(m-1)/s;
-	contf=n-(1+k*s);
-	contc=m-(1+p*s);
-	cout<<1LL*(contf+1)*(k+1)*(p+1)*(contc+1);
-	return 0;
+    int n;
+    int m;
+    int s;
+    int contf;
+    int contc;
+    cin>>n>>m>>s;
+    int k;
+    int p;
+    k=(n-1)/s;
+    p=(m-1)/s;
+    contf=n-(1+k*s);
+    contc=m-(1+p*s);
+    cout<<1LL*(contf+1)*(k+1)*(p+1)*(contc+1);
+    return 0;
 }

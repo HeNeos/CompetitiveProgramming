@@ -7,15 +7,15 @@ int lpf[N];
 vector <int> pr;
 int pi[N];
 void sieve(){
-	for(int i=2; i<N; i++){
-		if(!lpf[i]){
-			lpf[i] = i;
+    for(int i=2; i<N; i++){
+        if(!lpf[i]){
+            lpf[i] = i;
             pr.push_back(i);
             for(ll j=1LL*i*i; j<N; j+=i){
-				if(lpf[j] == 0) lpf[j] = i;
-			}
-		}
-	}
+                if(lpf[j] == 0) lpf[j] = i;
+            }
+        }
+    }
     for(int i=0; i<pr.size(); i++)
         pi[pr[i]] = i;
 }

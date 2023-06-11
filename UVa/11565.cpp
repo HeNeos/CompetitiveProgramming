@@ -26,21 +26,21 @@ int main(){
   for(int p=0; p<=N-1; p++){
     cin>>A[p]>>B[p]>>C[p];
     for(x[p]=-100; x[p]<=100; x[p]++){
-	   	  for(y[p]=-100; y[p]<=100; y[p]++){
-	  	    z[p]=A[p]-x[p]-y[p];
-	  	    if(x[p]*y[p]*z[p]==B[p] && (x[p]*x[p]+y[p]*y[p]+z[p]*z[p]==C[p] && (x[p]!=y[p] && (x[p]!=z[p] && y[p]!=z[p])))){
-	  		    prim[p]=minimo(x[p],y[p],z[p]);
-	  		    seg[p]=x[p]+z[p]+y[p]-minimo(x[p],y[p],z[p])-maximo(x[p],y[p],z[p]);
-	  		    terc[p]=maximo(x[p],y[p],z[p]);
-	  		    cont[p]=1;
-	  		    goto salir;
-	  	    }
-		    }
+             for(y[p]=-100; y[p]<=100; y[p]++){
+              z[p]=A[p]-x[p]-y[p];
+              if(x[p]*y[p]*z[p]==B[p] && (x[p]*x[p]+y[p]*y[p]+z[p]*z[p]==C[p] && (x[p]!=y[p] && (x[p]!=z[p] && y[p]!=z[p])))){
+                  prim[p]=minimo(x[p],y[p],z[p]);
+                  seg[p]=x[p]+z[p]+y[p]-minimo(x[p],y[p],z[p])-maximo(x[p],y[p],z[p]);
+                  terc[p]=maximo(x[p],y[p],z[p]);
+                  cont[p]=1;
+                  goto salir;
+              }
+            }
     }
     salir:;
   }
   for(int k=0; k<=N-1; k++){
-	  if(cont[k]==0) cout<<"No solution."<<endl;
+      if(cont[k]==0) cout<<"No solution."<<endl;
     else cout<<prim[k]<<" "<<seg[k]<<" "<<terc[k]<<endl;
   }
 }

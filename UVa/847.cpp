@@ -6,8 +6,8 @@ int main(){
         long double aux = log(N)/log(18);
         long double lo = floorl(aux);
         if (aux - lo < 0.00000001){
-        	cout << "Ollie wins.\n";
-        	continue;
+            cout << "Ollie wins.\n";
+            continue;
         }
         if (N/powl(18.0,lo) > 9.0) cout << "Ollie wins.\n";
         else cout << "Stan wins.\n";

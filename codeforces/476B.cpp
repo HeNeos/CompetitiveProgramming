@@ -25,13 +25,13 @@ int main(){
     }
     if(a1 == a2 && b1 == b2) cout << 1 << endl;
     else{
-    	if(q + a2 < a1 || q + b2 < b1) cout<<0<<endl;
-    	else{
-        	a1 -= a2;
-        	long double cases = comb(q, a1);
-        	double answ = cases/pow(2.0,q);
-        	printf("%.9f",answ);
-    	}
+        if(q + a2 < a1 || q + b2 < b1) cout<<0<<endl;
+        else{
+            a1 -= a2;
+            long double cases = comb(q, a1);
+            double answ = cases/pow(2.0,q);
+            printf("%.9f",answ);
+        }
     }
     return 0;
 }

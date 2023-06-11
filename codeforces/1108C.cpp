@@ -10,7 +10,7 @@ int main(){
     int minm=INT_MAX;
     string strr;
     do{
-		string comp;
+        string comp;
         int cont=0;
         for(int i=0;i<N;i++){
             comp+=bse[vecc[i%3]];

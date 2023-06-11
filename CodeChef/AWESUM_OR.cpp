@@ -5,13 +5,13 @@ using ll = long long;
 #define MOD 1000000007
 
 ll fastexp(ll x, ll y, ll p){
-	ll ans = 1;
-	while(y > 0){
-		if(y&1) ans = (ans*x)%p;
-		y = y>>1;
-		x = (x*x)%p;
-	}
-	return ans%p;
+    ll ans = 1;
+    while(y > 0){
+        if(y&1) ans = (ans*x)%p;
+        y = y>>1;
+        x = (x*x)%p;
+    }
+    return ans%p;
 }
 
 ll dp2[65];
@@ -61,5 +61,5 @@ int main() {
         // 111 -> 4^(n-3)*C(n, 3)
     }
 
-	return 0;
+    return 0;
 }

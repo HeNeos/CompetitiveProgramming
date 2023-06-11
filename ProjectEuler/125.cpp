@@ -95,7 +95,7 @@ int main(){
         vector <int> numbers;
         genPalindromes(d, numbers);
         for(int v : numbers){
-        	bool t = testOdd(v);
+            bool t = testOdd(v);
             if(t){
                 cout << "ODD " << v << endl;
                 ans += v; 

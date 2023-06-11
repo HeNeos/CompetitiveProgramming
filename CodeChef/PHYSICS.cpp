@@ -25,6 +25,6 @@ int main() {
         }
         cout << ans << '\n';
     }
-	return 0;
+    return 0;
 }
 

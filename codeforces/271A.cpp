@@ -10,9 +10,9 @@ int cent=(i%1000)/100;
 int dec=(i%100)/10;
 int ent=(i%10);
 if(mill!=cent && (mill!=dec && (mill!=ent && (cent!=dec && (cent!=ent && dec!=ent))))){
-	cout<<i;
-	break;
+    cout<<i;
+    break;
 }
 }
-	return 0;
+    return 0;
 }
