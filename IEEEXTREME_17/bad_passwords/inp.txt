@@ -1,0 +1,9 @@
+6
+10 0 1 2 3 4 5 6 7 8 9
+12 January February March April May June July August September October November December
+7 Monday Tuesday Wednesday Thursday Friday Saturday Sunday
+3 qwerty asdf zxcv
+2 ana bob
+3 ? . !
+1
+ac ab
