@@ -90,6 +90,7 @@ string get_key(vector<pair<int, int>> &factors) {
   return get_key(exponents);
 }
 
+// f(n) = f(n) = \sum_{d\vert n} \vert d \neq n \vert f(d)
 ll f(int n) {
   if (n == 1 or lpf[n] == n)
     return 1;
@@ -132,6 +133,9 @@ vector<int> get_previous(vector<int> &v, vector<int> &original) {
   return ans;
 }
 
+// f(\prod p_{i}^{\alpha_{i}}) = g(\alpha_{1}, \alpha_{2}, \ldots)
+// g(\alpha_{1}, 1) = 2g(\alpha_{1}-1, 1) + g(\alpha_{1}) = 2^{\alpha_{1}}f(p_{2}) + 2^{\alpha-1}\alpha f(p_{1})
+// g(\alpha_{1}, \alpha_{2}) = 2g(\alpha_{1}-1, \alpha_{2}) + 2g(\alpha_{1}, \alpha_{2}-1) - 2g(\alpha_{1}-1, \alpha_{2}-1)
 ll g(vector<int> &alphas) {
   sort(alphas.begin(), alphas.end());
   if (alphas.size() == 0)
