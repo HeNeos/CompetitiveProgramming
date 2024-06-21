@@ -1,51 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
-int prim = 1000000007;
-long long fastexp(long long a, long long b, long long p){
-    if(b==0) return 1;
-    if(b==1) return a%p;
-    if(b%2==0){
-        long long aux = fastexp(a,b/2,p)%p;
-        return (1LL*aux*aux)%p;
-    }
-    long long aux = fastexp(a,(b-1)/2,p)%p;
-    return ((1LL*aux*aux)%p*a)%p;
+using ll = long long;
+#define MOD 1000000007
+
+ll fastexp(ll x, ll y, ll p) {
+  ll ans = 1;
+  while (y > 0) {
+    if (y & 1)
+      ans = (1LL * ans * x) % p;
+    y = y >> 1;
+    x = (1LL * x * x) % p;
+  }
+  return ans % p;
 }
-map<long long, long long> chonion;
-int main(){
-    long long n, x;
-    cin >> n >> x;
-    vector <long long> exp;
-    long long sum = 0;
-    for(int i=0; i<n; i++){
-        int a;
-        cin >> a;
-        sum += a;
-        exp.push_back(a);
+
+map<ll, ll> m;
+int main() {
+  ll n, x;
+  cin >> n >> x;
+  vector<ll> powers(n);
+  ll powers_sum = 0;
+  for (int i = 0; i < n; i++) {
+    int a;
+    cin >> a;
+    powers_sum += a;
+    powers[i] = a;
+    m[-a]++;
+  }
+  for (auto v : m) {
+    if (v.first < 0 and v.second >= x) {
+      int next_power = v.second / x;
+      int residue = v.second % x;
+      m[v.first] = residue;
+      m[v.first + 1] += next_power;
     }
-    sort(exp.begin(), exp.end());
-    for(int i=0; i<n; i++){
-        chonion[-exp[i]]++;
-    }
-    for(auto i:chonion){
-        if(i.first < 0 and i.second >= x){
-            int what = i.second/x;
-            chonion[i.first] = i.second%x;
-            chonion[i.first+1] = chonion[i.first+1]+what;
-        }
-    }
-    exp.clear();
-    vector <pair<int,int> > expcant;
-    for(auto i:chonion){
-        if(i.second > 0) expcant.push_back(make_pair(-i.first,i.second));
-    }
-    long long auxsum = sum;
-    sum = 0;
-    for(int i=0; i<expcant.size(); i++) sum = sum + expcant[i].first;
-    long long times = expcant[0].second;    
-    long long expoo = expcant[0].first;
-    long long answ = fastexp(x,sum-expoo,prim)%prim;
-    answ = (1LL*answ*fastexp(x,auxsum-sum,prim)%prim)%prim;
-    cout << answ;
-    return 0;
+  }
+  powers.clear();
+  vector<pair<int, int>> count_powers;
+  for (auto i : m) {
+    if (i.second > 0)
+      count_powers.push_back(make_pair(-i.first, i.second));
+  }
+  ll old_sum = powers_sum;
+  powers_sum = 0;
+  for (auto power : count_powers)
+    powers_sum += power.first;
+  ll times = count_powers[0].second;
+  ll power = count_powers[0].first;
+  ll ans = fastexp(x, powers_sum - power, MOD) % MOD;
+  ans *= fastexp(x, old_sum - powers_sum, MOD);
+  cout << ans % MOD;
+  return 0;
 }
