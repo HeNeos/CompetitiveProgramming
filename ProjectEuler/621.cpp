@@ -137,10 +137,11 @@ void generate_divisors(ll n, Factors &factorization, vll &divisors,
 }
 
 ll solve(ll n) {
-  // n = x^2+x+y^2+y+z^2+z
-  // n = (x+1/2)^2 + ... - 3/4
-  // 4n = (2x+1)^2 + ... - 3
-  // 4n+3 = (2x+1)^2 + (2y+1)^2 + (2z+1)^2
+  // https://www.sciencedirect.com/science/article/pii/S0012365X99001594?via%3Dihub
+  //  n = x^2+x+y^2+y+z^2+z
+  //  n = (x+1/2)^2 + ... - 3/4
+  //  4n = (2x+1)^2 + ... - 3
+  //  4n+3 = (2x+1)^2 + (2y+1)^2 + (2z+1)^2
   n = n * 8 + 3;
   vll divisors = get_divisors(n);
   ll ans = 4LL * e(divisors, 1, 3, 4) + 3LL * e(divisors, 1, 7, 8) +
