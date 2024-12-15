@@ -1,0 +1,10 @@
+[package]
+name = "project_euler-918"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "project_euler-918"
+path = "918.rs"
