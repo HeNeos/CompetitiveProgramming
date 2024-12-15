@@ -1,11 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
+
+std::mutex mtx;
+
 // #define N 351520
-#define N 20000000
+#define N 80000000
 #define TWO_SOLUTIONS 351520
 #define MAXN 123567101113
 #define BATCH 1000000000
+
 ll START = 1;
 ll END = BATCH;
 
@@ -76,6 +80,47 @@ ll find_x(__int128 r, int p) {
   return ans;
 }
 
+void processChunk(const vector<int> &prime, int start, int end,
+                  vector<pair<ll, pair<ll, ll>>> &solutions,
+                  set<ll> &additional) {
+  for (int i = start; i < end; i++) {
+    int p = prime[i];
+    if (p % 4 != 1)
+      continue;
+
+    long long r_1 = FactorialMod((p - 1) / 2, p);
+    r_1 = min(r_1, p - r_1);
+    long long x_1 = find_x(r_1, p);
+    long long r_2 = p - r_1;
+    long long x_2 = find_x(r_2, p);
+    long long p_2 = 1LL * p * p;
+
+    if (x_1 > x_2)
+      swap(x_1, x_2);
+
+    pair<long long, long long> x = {x_1, x_2};
+
+    if (p_2 > MAXN) {
+      if (x_1 > MAXN)
+        x.first = -1;
+      if (x_2 > MAXN)
+        x.second = -1;
+    }
+    if (x.first == -1 && x.second == -1)
+      continue;
+
+    if (p <= TWO_SOLUTIONS) {
+      lock_guard<mutex> lock(mtx);
+      solutions.push_back(make_pair(p_2, x));
+    } else {
+      lock_guard<mutex> lock(mtx);
+      additional.insert(x.first);
+      if (x.second != -1)
+        additional.insert(x.second);
+    }
+  }
+}
+
 ll solve(vector<pair<ll, pair<ll, ll>>> &solutions, set<ll> &addit) {
   unsigned long long out = MAXN;
   pair<ll, pair<ll, ll>> lower_solution = solutions[0];
@@ -144,47 +189,22 @@ int main() {
   sieve();
   vector<pair<ll, pair<ll, ll>>> solutions;
   set<ll> additional;
-  for(int i=0; i<prime.size(); i++){
-    int p = prime[i];
-    if(i%100000 == 0){
-      cout << p << '\n';
-    }
-    if (p % 4 != 1)
-      continue;
-    ll r_1 = FactorialMod((p - 1) / 2, p);
-    r_1 = min(r_1, p - r_1);
-    ll x_1 = find_x(r_1, p);
-    ll r_2 = p - r_1;
-    ll x_2 = find_x(r_2, p);
-    ll p_2 = 1LL * p * p;
-    if (x_1 > x_2)
-      swap(x_1, x_2);
-    pair<ll, ll> x = {x_1, x_2};
-    if (p_2 > MAXN) {
-      if (x_1 > MAXN)
-        x.first = -1;
-      if (x_2 > MAXN)
-        x.second = -1;
-    }
-    if (x.first == -1 and x.second == -1)
-      continue;
-    if (p <= TWO_SOLUTIONS)
-      solutions.push_back(make_pair(p_2, x));
-    else {
-      additional.insert(x.first);
-      if (x.second != -1)
-        additional.insert(x.second);
-    }
+  int numThreads = thread::hardware_concurrency();
+  vector<thread> threads;
+  int chunkSize = prime.size() / numThreads;
+  for (int t = 0; t < numThreads; t++) {
+    int start = t * chunkSize;
+    int end = (t == numThreads - 1) ? prime.size() : (t + 1) * chunkSize;
+    threads.push_back(thread(processChunk, ref(prime), start, end,
+                             ref(solutions), ref(additional)));
   }
+  for (auto &thread : threads)
+    thread.join();
   cout << "FINISHED primes\n";
   prime.clear();
   is_prime.clear();
-  // for (auto solution : solutions) {
-  //   cout << solution.first << ": {" << solution.second.first << ", "
-  //        << solution.second.second << "}\n";
-  // }
-
   ll ans = solve(solutions, additional);
+  // ll ans = parallelSolve(solutions, additional);
   cout << ans << '\n';
   return 0;
 }
