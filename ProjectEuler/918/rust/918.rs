@@ -21,9 +21,9 @@ impl Solver {
             return value;
         }
         let result = if n % 2 == 0 {
-            2_i128 * self.a(n / 2)
+            2i128 * self.a(n / 2)
         } else {
-            self.a((n - 1) / 2) - 3_i128 * self.a((n + 1) / 2)
+            self.a((n - 1) / 2) - 3i128 * self.a((n + 1) / 2)
         };
         self.a_cache.insert(n, result);
         result
@@ -36,8 +36,8 @@ impl Solver {
         let result = if n % 2 == 0 {
             -self.a(n / 2)
         } else {
-            -3_i128 * self.a(n / 2 + 1)
-        } + 4_i128 * self.a(1);
+            -3i128 * self.a(n / 2 + 1)
+        } + 4i128 * self.a(1);
         self.s_cache.insert(n, result);
         result
     }
@@ -45,7 +45,7 @@ impl Solver {
 
 fn main() {
     let mut solver = Solver::new();
-    let value = solver.s(10_i64.pow(12));
+    let value = solver.s(10i64.pow(12));
 
     println!("{value}");
 }

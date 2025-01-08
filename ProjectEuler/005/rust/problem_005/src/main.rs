@@ -1,3 +1,5 @@
+#![feature(isqrt)]
+
 use cached::proc_macro::cached;
 use cached::UnboundCache;
 
@@ -65,7 +67,7 @@ fn pi(n: u8, pi_sqrt: &Vec<u32>, primes: &Vec<u32>) -> u8 {
     if primes[primes.len() as usize - 1] < n as u32 {
         return lucy_pi(
             n,
-            pi((n as f32).sqrt() as u8, pi_sqrt, primes) as i32 - 1,
+            pi(n.isqrt(), pi_sqrt, primes) as i32 - 1,
             primes,
         );
     }
@@ -117,7 +119,7 @@ fn lucy_primorial(
 
 fn main() {
     let n: u8 = 20;
-    let n_sqrt: u8 = (n as f64).sqrt() as u8;
+    let n_sqrt: u8 = n.isqrt();
     let (primes, pi_sqrt) = sieve(n_sqrt);
     let factorials: Vec<u128> = build_factorials(n);
     let mut ans: u128 = lucy_primorial(
