@@ -1,17 +1,12 @@
 fn main() {
-    let mut a: i32 = 1;
-    let mut b: i32 = 1;
-    let n: i32 = 4_000_000;
-    let mut sum: i64 = 0;
-    let mut counter: i8 = 0;
-    while b <= n {
-        if counter == 1 {
-            counter -= 3;
-            sum += b as i64;
-        }
-        b = a + b;
-        a = b - a;
-        counter += 1;
+    let mut a: u32 = 1;
+    let mut b: u32 = 1;
+    let n: u32 = 4_000_000;
+    let mut sum: u64 = 0;
+    while (a + b) <= n {
+        sum += (a + b) as u64;
+        a += 2 * b;
+        b += 2 * (a - b);
     }
     println!("{sum}");
 }
