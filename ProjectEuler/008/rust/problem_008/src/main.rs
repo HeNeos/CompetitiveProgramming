@@ -11,15 +11,6 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
-fn get_product(number: &String, start_position: usize, end_position: usize) -> u32 {
-    let number_slice: &str = &number[start_position..end_position];
-    let mut product: u32 = 1;
-    for digit in number_slice.chars() {
-        product *= digit as u32;
-    }
-    return product;
-}
-
 fn main() {
     let mut line_number: Vec<String> = Vec::new();
     if let Ok(lines) = read_lines("./input.txt") {
@@ -29,11 +20,47 @@ fn main() {
     }
     let number: String = line_number.concat();
     let number_length: usize = 13;
-    let mut maximal_product: u32 = 0;
+    let mut current_product: u64 = 1;
+    let mut current_zeros: u32 = 0;
+    for pos in 0..number_length {
+        let current_digit: u32 = number.chars().nth(pos).unwrap().to_digit(10).unwrap();
+        if current_digit == 0 {
+            current_zeros += 1;
+        } else {
+            current_product *= current_digit as u64;
+        }
+    }
+    let mut maximal_product: u64 = 0;
+    if current_zeros == 0 {
+        maximal_product = current_product;
+    }
     for end_position in (number_length + 1)..=number.len() {
         let start_position: usize = end_position - number_length - 1;
-        let product: u32 = get_product(&number, start_position, end_position);
-        maximal_product = cmp::max(maximal_product, product);
+        let current_digit: u32 = number
+            .chars()
+            .nth(end_position - 1)
+            .unwrap()
+            .to_digit(10)
+            .unwrap();
+        let past_digit: u32 = number
+            .chars()
+            .nth(start_position)
+            .unwrap()
+            .to_digit(10)
+            .unwrap();
+        if past_digit == 0 {
+            current_zeros -= 1;
+        } else {
+            current_product /= past_digit as u64;
+        }
+        if current_digit == 0 {
+            current_zeros += 1;
+        } else {
+            current_product *= current_digit as u64;
+        }
+        if current_zeros == 0 {
+            maximal_product = cmp::max(maximal_product, current_product);
+        }
     }
     println!("{maximal_product}");
 }
