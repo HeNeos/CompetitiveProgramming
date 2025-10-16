@@ -1,0 +1,3 @@
+(executable
+ (public_name euler002)
+ (name euler002))
