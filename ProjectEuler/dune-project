@@ -1,0 +1,7 @@
+(lang dune 3.0)
+
+(name projecteuler)
+
+(package
+ (name projecteuler)
+ (depends ocaml dune))
